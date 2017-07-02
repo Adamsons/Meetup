@@ -1,9 +1,9 @@
-﻿namespace MeetupTest.Api
-{
-    using Swashbuckle.AspNetCore.Swagger;
-    using Swashbuckle.AspNetCore.SwaggerGen;
-    using System.Linq;
+﻿using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Linq;
 
+namespace MeetupTest.Api
+{
     public class SwaggerDefaultValues : IOperationFilter
     {
         public void Apply(Operation operation, OperationFilterContext context)
