@@ -29,7 +29,7 @@ namespace MeetupTest.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
+            services.AddMvcCore().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'V");
 
             services.AddMvc();
             services.AddApiVersioning();
