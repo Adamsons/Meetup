@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MeetupTest.Domain
+namespace MeetupTest.Domain.Messages.Responses
 {
     public class GetMeetupsResponse
     {

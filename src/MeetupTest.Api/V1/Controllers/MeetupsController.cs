@@ -5,6 +5,7 @@ using MeetupTest.Domain;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using MeetupTest.Domain.Messages.Requests;
 
 namespace MeetupTest.Api.V1.Controllers
 {
@@ -22,7 +23,7 @@ namespace MeetupTest.Api.V1.Controllers
         [HttpGet]
         public async Task<IEnumerable<Meetup>> Get()
         {
-            var response = await _mediator.Send(new GetAllMeetupsRequest());
+            var response = await _mediator.Send(new GetMeetupsRequest());
 
             return response.Meetups?.Select(meetup => new Meetup
             {
@@ -34,11 +35,22 @@ namespace MeetupTest.Api.V1.Controllers
             }) ?? Enumerable.Empty<Meetup>();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Meetup> Get(int id)
         {
-            return "value";
+            var response = await _mediator.Send(new GetMeetupRequest(id));
+
+            if (response.Meetup == null)
+                return null;
+
+            return new Meetup
+            {
+                Id = response.Meetup.Id,
+                Name = response.Meetup.Name,
+                StartTime = response.Meetup.StartTime,
+                EndTime = response.Meetup.EndTime,
+                Location = response.Meetup.Location
+            };
         }
     }
 }

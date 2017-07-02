@@ -2,6 +2,8 @@
 using MediatR;
 using MeetupTest.Api.V1.Controllers;
 using MeetupTest.Domain;
+using MeetupTest.Domain.Messages.Requests;
+using MeetupTest.Domain.Messages.Responses;
 using Moq;
 using System;
 using System.Linq;
@@ -32,9 +34,9 @@ namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
         [Fact]
         public async Task Get_ReturnsAllMeetups()
         {
-            var meetup = new Meetup() { Id = Guid.NewGuid() };
+            var meetup = new Meetup() { Id = 12345 };
             var meetups = new[] { meetup };
-            _mediator.Setup(o => o.Send(It.IsAny<GetAllMeetupsRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new GetMeetupsResponse(meetups));
+            _mediator.Setup(o => o.Send(It.IsAny<GetMeetupsRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new GetMeetupsResponse(meetups));
 
             var result = await _controller.Get();
 
@@ -45,7 +47,7 @@ namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
         [Fact]
         public async Task Get_ReturnsEmptyListWhenNoMeetupsAreAvailable()
         {
-            _mediator.Setup(o => o.Send(It.IsAny<GetAllMeetupsRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new GetMeetupsResponse(null));
+            _mediator.Setup(o => o.Send(It.IsAny<GetMeetupsRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new GetMeetupsResponse(null));
 
             var result = await _controller.Get();
 
