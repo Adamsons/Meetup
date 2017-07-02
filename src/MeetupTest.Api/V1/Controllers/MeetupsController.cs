@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeetupTest.Api.V1.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/v{api-version:apiVersion}/[controller]")]
+    [Route("api/v1/[controller]")]
     public class MeetupsController : Controller
     {
         // GET: api/values

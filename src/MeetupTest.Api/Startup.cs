@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.Swagger;
+using MediatR;
 
 namespace MeetupTest.Api
 {
@@ -21,6 +18,10 @@ namespace MeetupTest.Api
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+                builder.AddApplicationInsightsSettings(developerMode: true);
+
             Configuration = builder.Build();
         }
 
@@ -39,15 +40,18 @@ namespace MeetupTest.Api
 
                 foreach (var description in provider.ApiVersionDescriptions)
                 {
-                    options.SwaggerDoc(
-                        description.GroupName,
-                        new Info()
-                        {
-                            Title = $"MeetupTest API {description.ApiVersion}",
-                            Version = description.ApiVersion.ToString()
-                        });
+                    options.SwaggerDoc(description.GroupName, new Info()
+                    {
+                        Title = $"MeetupTest API v{description.ApiVersion}",
+                        Version = description.ApiVersion.ToString()
+                    });
                 }
+
+                options.OperationFilter<SwaggerDefaultValues>();
             });
+
+            services.AddMediatR();
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApiVersionDescriptionProvider provider)
