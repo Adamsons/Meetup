@@ -27,7 +27,6 @@ namespace MeetupTest.Api.V1.Controllers
 
             return response.Meetups?.Select(meetup => new Meetup
             {
-                Id = meetup.Id,
                 Name = meetup.Name,
                 Location = meetup.Location,
                 StartTime = meetup.StartTime,
@@ -45,7 +44,6 @@ namespace MeetupTest.Api.V1.Controllers
 
             return new Meetup
             {
-                Id = response.Meetup.Id,
                 Name = response.Meetup.Name,
                 StartTime = response.Meetup.StartTime,
                 EndTime = response.Meetup.EndTime,

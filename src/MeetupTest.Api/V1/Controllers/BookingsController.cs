@@ -1,6 +1,8 @@
 ﻿using MediatR;
+using MeetupTest.Api.V1.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace MeetupTest.Api.V1.Controllers
 {
@@ -13,6 +15,11 @@ namespace MeetupTest.Api.V1.Controllers
         public BookingsController(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+
+        public async Task Put(Booking booking)
+        {
+
         }
     }
 }

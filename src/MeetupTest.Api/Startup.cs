@@ -51,6 +51,13 @@ namespace MeetupTest.Api
             });
 
             services.AddMediatR();
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = "localhost";
+                options.InstanceName = "SampleInstance";
+            });
+
             services.AddApplicationInsightsTelemetry(Configuration);
         }
 
