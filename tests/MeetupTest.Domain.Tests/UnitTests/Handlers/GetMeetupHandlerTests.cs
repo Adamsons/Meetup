@@ -9,7 +9,6 @@ using MeetupTest.Domain.Messages.Responses;
 using MeetupTest.Persistence;
 using Moq;
 using System.Threading.Tasks;
-using MeetupTest.Domain.Tests.UnitTests.Helpers;
 using MeetupTest.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

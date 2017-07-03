@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\MeetupTest.Persistence\MeetupTest.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\MeetupTest.Persistence\MeetupTest.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

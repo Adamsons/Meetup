@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupTest.Domain.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupTest.Persistence", "src\MeetupTest.Persistence\MeetupTest.Persistence.csproj", "{F6174642-2B49-4B86-B431-9083916A7D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetupTest.Persistence.Tests", "MeetupTest.Persistence.Tests\MeetupTest.Persistence.Tests.csproj", "{C94B88E8-0601-489F-8D07-CB0BA01E352D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupTest.Persistence.Tests", "tests\MeetupTest.Persistence.Tests\MeetupTest.Persistence.Tests.csproj", "{9E1ED9BB-50F7-4A0E-AEAF-722000E36B64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,10 @@ Global
 		{F6174642-2B49-4B86-B431-9083916A7D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6174642-2B49-4B86-B431-9083916A7D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6174642-2B49-4B86-B431-9083916A7D97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C94B88E8-0601-489F-8D07-CB0BA01E352D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C94B88E8-0601-489F-8D07-CB0BA01E352D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C94B88E8-0601-489F-8D07-CB0BA01E352D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C94B88E8-0601-489F-8D07-CB0BA01E352D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E1ED9BB-50F7-4A0E-AEAF-722000E36B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E1ED9BB-50F7-4A0E-AEAF-722000E36B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E1ED9BB-50F7-4A0E-AEAF-722000E36B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E1ED9BB-50F7-4A0E-AEAF-722000E36B64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +59,6 @@ Global
 		{3DB13601-F362-49EE-BC7E-629EEB9A3AB3} = {D85CC81F-3D23-4B84-834A-56E018EDD5D9}
 		{3EE38B8D-40B9-4DF1-A594-C994329CA0D0} = {4FE316F5-7F78-40B1-8A96-D869D870FA18}
 		{F6174642-2B49-4B86-B431-9083916A7D97} = {D85CC81F-3D23-4B84-834A-56E018EDD5D9}
-		{C94B88E8-0601-489F-8D07-CB0BA01E352D} = {4FE316F5-7F78-40B1-8A96-D869D870FA18}
+		{9E1ED9BB-50F7-4A0E-AEAF-722000E36B64} = {4FE316F5-7F78-40B1-8A96-D869D870FA18}
 	EndGlobalSection
 EndGlobal
