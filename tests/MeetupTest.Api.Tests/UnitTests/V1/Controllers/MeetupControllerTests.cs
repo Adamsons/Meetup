@@ -4,6 +4,7 @@ using MeetupTest.Api.V1.Controllers;
 using MeetupTest.Domain;
 using MeetupTest.Domain.Messages.Requests;
 using MeetupTest.Domain.Messages.Responses;
+using MeetupTest.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;

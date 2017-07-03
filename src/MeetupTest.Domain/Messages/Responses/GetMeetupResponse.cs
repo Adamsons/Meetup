@@ -1,4 +1,6 @@
-﻿namespace MeetupTest.Domain.Messages.Responses
+﻿using MeetupTest.Domain.Models;
+
+namespace MeetupTest.Domain.Messages.Responses
 {
     public class GetMeetupResponse
     {

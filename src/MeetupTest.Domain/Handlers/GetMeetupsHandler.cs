@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using MeetupTest.Domain.Messages.Requests;
 using MeetupTest.Domain.Messages.Responses;
+using MeetupTest.Domain.Models;
 using System.Linq;
 using System.Threading.Tasks;
 

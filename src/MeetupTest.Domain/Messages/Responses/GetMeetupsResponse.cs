@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MeetupTest.Domain.Models;
+using System.Collections.Generic;
 
 namespace MeetupTest.Domain.Messages.Responses
 {
