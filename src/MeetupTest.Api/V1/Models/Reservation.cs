@@ -3,30 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MeetupTest.Api.V1.Models
 {
-    public class Reservation
+    public class CreateReservation
     {
         [Required]
         [Range(1, 4)]
-        public readonly List<SeatReservation> Seats;
-
-        public Reservation(List<SeatReservation> seats)
-        {
-            Seats = seats;
-        }
+        public List<SeatReservation> Seats { get; set; }
     }
 
     public class SeatReservation
     {
         [Required]
-        public int SeatId { get; }
+        public int SeatId { get; set; }
 
         [EmailAddress]
-        public string EmailAddress { get; }
-
-        public SeatReservation(int seatId, string emailAddress)
-        {
-            seatId = SeatId;
-            EmailAddress = emailAddress;
-        }
+        public string EmailAddress { get; set; }
     }
 }

@@ -6,11 +6,16 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.Swagger;
 using MediatR;
+using MeetupTest.Domain.Validators;
+using MeetupTest.Domain.Messages.Requests;
+using MeetupTest.Api.Middleware;
 
 namespace MeetupTest.Api
 {
     public class Startup
     {
+        private IConfigurationRoot _configuration { get; }
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -22,10 +27,8 @@ namespace MeetupTest.Api
             if (env.IsDevelopment())
                 builder.AddApplicationInsightsSettings(developerMode: true);
 
-            Configuration = builder.Build();
+            _configuration = builder.Build();
         }
-
-        public IConfigurationRoot Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -33,6 +36,7 @@ namespace MeetupTest.Api
 
             services.AddMvc();
             services.AddApiVersioning();
+            services.AddLogging();
             services.AddSwaggerGen(
             options =>
             {
@@ -40,10 +44,12 @@ namespace MeetupTest.Api
 
                 foreach (var description in provider.ApiVersionDescriptions)
                 {
-                    options.SwaggerDoc(description.GroupName, new Info()
+                    options.SwaggerDoc(description.GroupName, new Info
                     {
                         Title = $"MeetupTest API v{description.ApiVersion}",
-                        Version = description.ApiVersion.ToString()
+                        Version = description.ApiVersion.ToString(),
+                        Description = ".NET Core Meetup Test",
+                        Contact = new Contact { Name = "Sean Adamson", Url = "https://github.com/Adamsons/Meetup" },
                     });
                 }
 
@@ -54,18 +60,21 @@ namespace MeetupTest.Api
 
             services.AddDistributedRedisCache(options =>
             {
-                options.Configuration = "localhost";
-                options.InstanceName = "SampleInstance";
+                options.Configuration = _configuration["Redis:Configuration"];
+                options.InstanceName = _configuration["Redis:InstanceName"];
             });
 
-            services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddApplicationInsightsTelemetry(_configuration);
+
+            services.AddTransient<IRequestValidator<CreateReservationRequest>, CreateReservationValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApiVersionDescriptionProvider provider)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(_configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseMiddleware<ErrorLoggingMiddleware>();
             app.UseMvc();
             app.UseApiVersioning();
             app.UseSwagger();

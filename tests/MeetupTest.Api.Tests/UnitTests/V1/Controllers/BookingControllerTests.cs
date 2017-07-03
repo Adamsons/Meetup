@@ -21,8 +21,15 @@ namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
         [Fact]
         public void Controller_ThrowsGivenNullMediator()
         {
-            Action act = () => new MeetupsController(null);
+            Action act = () => new BookingsController(null);
             act.ShouldThrow<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void Controller_DoesNotThrowGivenValidArguments()
+        {
+            Action act = () => new BookingsController(_mediator.Object);
+            act.ShouldNotThrow();
         }
     }
 }

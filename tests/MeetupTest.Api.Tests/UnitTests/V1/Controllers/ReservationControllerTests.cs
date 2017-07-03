@@ -1,10 +1,8 @@
 ﻿using FluentAssertions;
 using MediatR;
 using MeetupTest.Api.V1.Controllers;
-using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
@@ -28,11 +26,17 @@ namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
         }
 
         [Fact]
-        public async Task Put_ReturnsBadRequestIfBodyIsNull()
+        public void Controller_DoesNotThrowGivenValidArguments()
         {
-            var result = await _controller.Put(null);
-            result.Should().NotBeNull();
-            result.Should().BeOfType<OkResult>();
+            Action act = () => new ReservationsController(_mediator.Object);
+            act.ShouldNotThrow();
+        }
+
+        [Fact]
+        public void Put_ThrowsIfReservationIsNull()
+        {
+            Action act = () => _controller.Put(null).Wait();
+            act.ShouldThrow<ArgumentNullException>();
         }
     }
 }

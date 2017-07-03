@@ -16,6 +16,7 @@ namespace MeetupTest.Domain.Tests.UnitTests.Handlers
         public async Task Handle_ReturnsMeetups()
         {
             var result = await _handler.Handle(new GetMeetupsRequest());
+
             result.Should().NotBeNull();
             result.Meetups.Should().NotBeNull();
             result.Meetups.Should().HaveCount(0);

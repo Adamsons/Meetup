@@ -4,8 +4,10 @@ using MeetupTest.Api.V1.Controllers;
 using MeetupTest.Domain;
 using MeetupTest.Domain.Messages.Requests;
 using MeetupTest.Domain.Messages.Responses;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,16 +34,28 @@ namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
         }
 
         [Fact]
+        public void Controller_DoesNotThrowGivenValidArguments()
+        {
+            Action act = () => new MeetupsController(_mediator.Object);
+            act.ShouldNotThrow();
+        }
+
+        [Fact]
         public async Task Get_ReturnsAllMeetups()
         {
-            var meetup = new Meetup() { Id = 12345 };
+            var meetup = new Meetup() { Name = "12345" };
             var meetups = new[] { meetup };
             _mediator.Setup(o => o.Send(It.IsAny<GetMeetupsRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(new GetMeetupsResponse(meetups));
 
             var result = await _controller.Get();
 
-            result.Should().NotBeNullOrEmpty();
-            result.Any(mapped => meetup.Id == mapped.Id).Should().BeTrue();
+            result.Should().BeOfType<OkObjectResult>();
+
+            var okResult = result as OkObjectResult;
+            okResult.Value.Should().NotBeNull();
+
+            var resultMeetups = okResult.Value as IEnumerable<Api.V1.Models.Meetup>;
+            resultMeetups.Any(mapped => meetup.Name == mapped.Name).Should().BeTrue();
         }
 
         [Fact]
@@ -51,8 +65,13 @@ namespace MeetupTest.Api.Tests.UnitTests.V1.Controllers
 
             var result = await _controller.Get();
 
-            result.Should().NotBeNull();
-            result.Should().HaveCount(0);
+            result.Should().BeOfType<OkObjectResult>();
+
+            var okResult = result as OkObjectResult;
+            okResult.Value.Should().NotBeNull();
+
+            var resultMeetups = okResult.Value as Api.V1.Models.Meetup[];
+            resultMeetups.Should().HaveCount(0);
         }
     }
 }

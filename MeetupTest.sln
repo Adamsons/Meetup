@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupTest.Domain", "src\Me
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupTest.Domain.Tests", "tests\MeetupTest.Domain.Tests\MeetupTest.Domain.Tests.csproj", "{3EE38B8D-40B9-4DF1-A594-C994329CA0D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetupTest.Persistence", "src\MeetupTest.Persistence\MeetupTest.Persistence.csproj", "{F6174642-2B49-4B86-B431-9083916A7D97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{3EE38B8D-40B9-4DF1-A594-C994329CA0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EE38B8D-40B9-4DF1-A594-C994329CA0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EE38B8D-40B9-4DF1-A594-C994329CA0D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6174642-2B49-4B86-B431-9083916A7D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6174642-2B49-4B86-B431-9083916A7D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6174642-2B49-4B86-B431-9083916A7D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6174642-2B49-4B86-B431-9083916A7D97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{55F32DE5-3CED-4887-B743-BCFE59B807B2} = {4FE316F5-7F78-40B1-8A96-D869D870FA18}
 		{3DB13601-F362-49EE-BC7E-629EEB9A3AB3} = {D85CC81F-3D23-4B84-834A-56E018EDD5D9}
 		{3EE38B8D-40B9-4DF1-A594-C994329CA0D0} = {4FE316F5-7F78-40B1-8A96-D869D870FA18}
+		{F6174642-2B49-4B86-B431-9083916A7D97} = {D85CC81F-3D23-4B84-834A-56E018EDD5D9}
 	EndGlobalSection
 EndGlobal

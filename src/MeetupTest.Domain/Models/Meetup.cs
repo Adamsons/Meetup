@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeetupTest.Domain
+namespace MeetupTest.Domain.Models
 {
     public class Meetup
     {

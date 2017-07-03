@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MeetupTest.Api.V1.Models;
+using MeetupTest.Api.Validation;
 using MeetupTest.Domain.Messages.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MeetupTest.Api.V1.Controllers
 {
-    [ApiVersion("1")]
+    [ApiVersion("2")]
     [Route("api/v{api-version:apiVersion}/[controller]")]
     public class ReservationsController : Controller
     {
@@ -20,10 +21,11 @@ namespace MeetupTest.Api.V1.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Reservation reservation)
+        [ValidateModel]
+        [ProducesResponseType(204), ProducesResponseType(400), ProducesResponseType(409)]
+        public async Task<IActionResult> Put([FromBody]CreateReservation reservation)
         {
-            if (!ModelState.IsValid)
-                return new BadRequestResult();
+            if (reservation == null) throw new ArgumentNullException(nameof(reservation));
 
             var mappedReservations = reservation.Seats.Select(seat => new Domain.Models.Reservation
             {
@@ -32,8 +34,7 @@ namespace MeetupTest.Api.V1.Controllers
             });
 
             var response = await _mediator.Send(new CreateReservationRequest(mappedReservations));
-
-            return new OkResult();
+            return new NoContentResult();
         }
     }
 }

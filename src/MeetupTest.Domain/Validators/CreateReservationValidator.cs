@@ -10,7 +10,7 @@ namespace MeetupTest.Domain.Validators
     }
 
 
-    class CreateReservationValidator : IRequestValidator<CreateReservationRequest>
+    public class CreateReservationValidator : IRequestValidator<CreateReservationRequest>
     {
         public bool Validate(CreateReservationRequest request)
         {

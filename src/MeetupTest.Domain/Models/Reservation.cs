@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MeetupTest.Domain.Models
+﻿namespace MeetupTest.Domain.Models
 {
     public class Reservation
     {
