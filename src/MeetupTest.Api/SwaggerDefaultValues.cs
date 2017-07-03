@@ -16,9 +16,9 @@ namespace MeetupTest.Api
                     parameter.Description = description.ModelMetadata.Description;
 
                 if (parameter.Default == null)
-                    parameter.Default = description.RouteInfo.DefaultValue;
+                    parameter.Default = description.RouteInfo?.DefaultValue;
 
-                parameter.Required |= !description.RouteInfo.IsOptional;
+                parameter.Required |= !description.RouteInfo?.IsOptional ?? false;
             }
         }
     }
