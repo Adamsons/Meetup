@@ -1,11 +1,11 @@
-﻿using MeetupTest.Domain.Models;
+﻿using MeetupTest.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MeetupTest.Persistence
 {
-    public class MeetupContext : DbContext
+    public class MeetupContext : DbContext, IMeetupContext
     {
-        public MeetupContext(DbContextOptions<MeetupContext> options) : base(options) { }
+        public MeetupContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Meetup> Meetups { get; set; }
         public DbSet<Seat> Seats { get; set; }

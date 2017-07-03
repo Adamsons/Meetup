@@ -1,4 +1,4 @@
-﻿namespace MeetupTest.Domain.Models
+﻿namespace MeetupTest.Persistence.Entities
 {
     public class Seat
     {

@@ -9,4 +9,8 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MeetupTest.Persistence\MeetupTest.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

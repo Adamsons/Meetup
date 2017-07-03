@@ -9,6 +9,9 @@ using MediatR;
 using MeetupTest.Domain.Validators;
 using MeetupTest.Domain.Messages.Requests;
 using MeetupTest.Api.Middleware;
+using MeetupTest.Domain;
+using MeetupTest.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace MeetupTest.Api
 {
@@ -57,6 +60,7 @@ namespace MeetupTest.Api
             });
 
             services.AddMediatR();
+            services.AddDomainServices();
 
             services.AddDistributedRedisCache(options =>
             {
@@ -83,6 +87,14 @@ namespace MeetupTest.Api
                 foreach (var description in provider.ApiVersionDescriptions)
                     options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
             });
+
+#if DEBUG
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<MeetupContext>();
+                context.SeedData();
+            }
+#endif
         }
     }
 }

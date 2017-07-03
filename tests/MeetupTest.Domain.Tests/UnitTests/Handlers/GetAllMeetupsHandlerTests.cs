@@ -1,16 +1,43 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
 using MediatR;
 using MeetupTest.Domain.Handlers;
 using MeetupTest.Domain.Messages.Requests;
 using MeetupTest.Domain.Messages.Responses;
+using MeetupTest.Persistence;
+using Moq;
 using System.Threading.Tasks;
+using MeetupTest.Persistence.Entities;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace MeetupTest.Domain.Tests.UnitTests.Handlers
 {
     public class GetMeetupsHandlerTests
     {
-        private IAsyncRequestHandler<GetMeetupsRequest, GetMeetupsResponse> _handler = new GetMeetupsHandler();
+        private readonly IAsyncRequestHandler<GetMeetupsRequest, GetMeetupsResponse> _handler;
+
+        private readonly Mock<IMeetupContext> _db = new Mock<IMeetupContext>();
+
+        public GetMeetupsHandlerTests()
+        {
+            var meetups = new List<Meetup>
+            {
+                new Meetup
+                {
+                    Id = 1,
+                    Name = "React London",
+                    Location = "London",
+                    StartTime = DateTime.Today,
+                    EndTime = DateTime.Today
+                }
+            };
+
+            var mockSet = new Mock<DbSet<Meetup>>();
+            _db.Setup(o => o.Meetups).Returns(mockSet.Object);
+            _handler = new GetMeetupsHandler(_db.Object);
+        }
 
         [Fact]
         public async Task Handle_ReturnsMeetups()
