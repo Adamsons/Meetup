@@ -10,13 +10,13 @@ namespace MeetupTest.Api.Tests.UnitTests.Middleware
 {
     public class ErrorLoggingMiddlewareTests
     {
-        private ErrorLoggingMiddleware _middleware;
-        private Mock<ILogger<ErrorLoggingMiddleware>> _logger;
+        private readonly ErrorHandlingMiddleware _middleware;
+        private readonly Mock<ILogger<ErrorHandlingMiddleware>> _logger;
 
         public ErrorLoggingMiddlewareTests()
         {
-            _logger = new Mock<ILogger<ErrorLoggingMiddleware>>();
-            _middleware = new ErrorLoggingMiddleware(new RequestDelegate((context) => throw new DivideByZeroException()), _logger.Object);
+            _logger = new Mock<ILogger<ErrorHandlingMiddleware>>();
+            _middleware = new ErrorHandlingMiddleware(((context) => throw new DivideByZeroException()), _logger.Object);
         }
 
         [Fact]

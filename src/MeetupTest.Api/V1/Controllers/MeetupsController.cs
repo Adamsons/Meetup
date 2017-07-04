@@ -13,7 +13,7 @@ namespace MeetupTest.Api.V1.Controllers
     [Route("api/v{api-version:apiVersion}/[controller]")]
     public class MeetupsController : Controller
     {
-        private IMediator _mediator;
+        private readonly IMediator _mediator;
 
         public MeetupsController(IMediator mediator)
         {

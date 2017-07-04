@@ -11,7 +11,6 @@ using MeetupTest.Domain.Messages.Requests;
 using MeetupTest.Api.Middleware;
 using MeetupTest.Domain;
 using MeetupTest.Persistence;
-using Microsoft.EntityFrameworkCore;
 
 namespace MeetupTest.Api
 {
@@ -62,12 +61,6 @@ namespace MeetupTest.Api
             services.AddMediatR();
             services.AddDomainServices();
 
-            services.AddDistributedRedisCache(options =>
-            {
-                options.Configuration = _configuration["Redis:Configuration"];
-                options.InstanceName = _configuration["Redis:InstanceName"];
-            });
-
             services.AddApplicationInsightsTelemetry(_configuration);
 
             services.AddTransient<IRequestValidator<CreateReservationRequest>, CreateReservationValidator>();
@@ -78,7 +71,7 @@ namespace MeetupTest.Api
             loggerFactory.AddConsole(_configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseMiddleware<ErrorLoggingMiddleware>();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseMvc();
             app.UseApiVersioning();
             app.UseSwagger();

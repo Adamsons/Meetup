@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using MeetupTest.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+using MeetupTest.Persistence.Tests.Helpers;
 
 namespace MeetupTest.Domain.Tests.UnitTests.Handlers
 {
@@ -34,7 +35,7 @@ namespace MeetupTest.Domain.Tests.UnitTests.Handlers
                 }
             };
 
-            var mockSet = new Mock<DbSet<Meetup>>();
+            var mockSet = DbSetHelper.MockDbSet(meetups);
             _db.Setup(o => o.Meetups).Returns(mockSet.Object);
             _handler = new GetMeetupsHandler(_db.Object);
         }
@@ -46,7 +47,7 @@ namespace MeetupTest.Domain.Tests.UnitTests.Handlers
 
             result.Should().NotBeNull();
             result.Meetups.Should().NotBeNull();
-            result.Meetups.Should().HaveCount(0);
+            result.Meetups.Should().HaveCount(1);
         }
     }
 }

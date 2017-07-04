@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Alias { get; set; }
-        public Meetup Meetup { get; set; }
+        public virtual Meetup Meetup { get; set; }
     }
 }

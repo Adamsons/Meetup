@@ -13,7 +13,7 @@ namespace MeetupTest.Api.V1.Controllers
     [Route("api/v{api-version:apiVersion}/[controller]")]
     public class ReservationsController : Controller
     {
-        private IMediator _mediator;
+        private readonly IMediator _mediator;
 
         public ReservationsController(IMediator mediator)
         {
@@ -27,7 +27,7 @@ namespace MeetupTest.Api.V1.Controllers
         {
             if (reservation == null) throw new ArgumentNullException(nameof(reservation));
 
-            var mappedReservations = reservation.Seats.Select(seat => new Domain.Models.Reservation
+            var mappedReservations = reservation.Seats.Select(seat => new Domain.Models.SeatReservation()
             {
                 EmailAddress = seat.EmailAddress,
                 SeatId = seat.SeatId

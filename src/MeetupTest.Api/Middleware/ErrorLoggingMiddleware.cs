@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace MeetupTest.Api.Middleware
 {
-    public class ErrorLoggingMiddleware
+    public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private ILogger<ErrorLoggingMiddleware> _logger;
+        private readonly ILogger<ErrorHandlingMiddleware> _logger;
 
-        public ErrorLoggingMiddleware(RequestDelegate next, ILogger<ErrorLoggingMiddleware> logger)
+        public ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandlingMiddleware> logger)
         {
             _next = next;
             _logger = logger;
@@ -25,6 +25,8 @@ namespace MeetupTest.Api.Middleware
             catch (Exception e)
             {
                 _logger.LogError(0, e, e.Message);
+                context.Response.StatusCode = 500;
+                await context.Response.WriteAsync("An error has occurred.");
             }
         }
     }

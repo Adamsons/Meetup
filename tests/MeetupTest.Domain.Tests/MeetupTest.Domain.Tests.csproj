@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MeetupTest.Domain\MeetupTest.Domain.csproj" />
+    <ProjectReference Include="..\MeetupTest.Persistence.Tests\MeetupTest.Persistence.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

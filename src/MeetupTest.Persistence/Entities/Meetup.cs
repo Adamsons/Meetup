@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MeetupTest.Persistence.Entities
 {
@@ -9,5 +10,7 @@ namespace MeetupTest.Persistence.Entities
         public string Location { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+
+        public ICollection<Seat> Seats { get; set; }
     }
 }

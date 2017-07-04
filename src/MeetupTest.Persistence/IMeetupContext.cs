@@ -7,6 +7,7 @@ namespace MeetupTest.Persistence
     {
         DbSet<Meetup> Meetups { get; set; }
         DbSet<Seat> Seats { get; set; }
+        DbSet<Reservation> Reservations { get; set; }
         DbSet<Booking> Bookings { get; set; }
     }
 }

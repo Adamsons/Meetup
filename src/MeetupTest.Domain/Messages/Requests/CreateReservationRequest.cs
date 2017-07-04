@@ -1,17 +1,17 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using MediatR;
 using MeetupTest.Domain.Messages.Responses;
 using MeetupTest.Domain.Models;
-using System.Collections.Generic;
 
 namespace MeetupTest.Domain.Messages.Requests
 {
     public class CreateReservationRequest : IRequest<CreateReservationResponse>
     {
-        public IEnumerable<Reservation> Reservations { get; }
+        public IEnumerable<SeatReservation> Reservation { get; }
 
-        public CreateReservationRequest(IEnumerable<Reservation> reservations)
+        public CreateReservationRequest(IEnumerable<SeatReservation> reservation)
         {
-            Reservations = Reservations;
+            Reservation = reservation;
         }
     }
 }
